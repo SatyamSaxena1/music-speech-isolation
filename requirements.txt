@@ -1,0 +1,11 @@
+torch>=1.12.0
+torchaudio>=0.12.0
+numpy
+soundfile
+pyyaml
+scipy
+tqdm
+pystoi
+mir_eval
+demucs
+jiwer

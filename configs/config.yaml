@@ -1,0 +1,32 @@
+dataset:
+  sample_rate: 16000
+  segment: 4.0  # seconds
+  cache: false
+
+training:
+  batch_size: 8
+  epochs: 100
+  optimizer:
+    name: adam
+    lr: 1e-3
+    weight_decay: 1e-5
+  scheduler:
+    name: ReduceLROnPlateau
+    factor: 0.5
+    patience: 5
+
+model:
+  name: conv_tasnet
+  latent_dim: 128
+
+metrics:
+  - si_sdr
+  - sdr
+  - stoi
+  - pesq  # optional - third party
+
+use_cases:
+  - improve_speech_to_text
+  - karaoke_vocal_removal
+
+device: auto  # cpu | cuda | auto

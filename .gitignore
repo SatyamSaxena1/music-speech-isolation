@@ -1,0 +1,31 @@
+# OS
+Thumbs.db
+.DS_Store
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.mypy_cache/
+.venv/
+.env
+
+# Editors/IDEs
+.vscode/
+.idea/
+
+# Project outputs and artifacts
+out_*/
+out_demucs/
+.models/
+jobs/
+training_workspace/
+train_workspace/
+
+# Input media (keep the README)
+input_flacs/*
+!input_flacs/README.md
+
+# Docker
+*.pid
