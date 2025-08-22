@@ -69,6 +69,18 @@ def make_outputs_for_track(track_path: Path, out_dir: Path, model: str, stems_ro
         print(f"[skip] Outputs already exist for {base}")
         return
 
+    # CI/PR smoke test path: don't download Demucs weights, just create dummy outputs
+    if os.getenv("SMOKE_TEST") == "1":
+        x, sr = _read_wav(track_path)
+        T = x.shape[0]
+        # Dummy: vocals = input, instrumental = zeros
+        v = x
+        instr = np.zeros_like(x)
+        _write_wav(out_vocals, v, sr)
+        _write_wav(out_instr, instr, sr)
+        print(f"[ok-smoke] Wrote {out_vocals} and {out_instr}")
+        return
+
     stems_dir = ensure_demucs_stems(track_path, model=model, out_root=stems_root)
 
     # Read stems and build outputs
